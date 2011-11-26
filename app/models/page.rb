@@ -8,8 +8,15 @@ class Page < ActiveRecord::Base
   end
 
   def update_sections(section_data)
+    p section_data, section_data.class
     section_data.each do |name, values|
+      p values
       section_by_name(name).content = values["value"]
     end
+  end
+
+  def content_for(name)
+    section = sections.find_by_name(name)
+    section.present? ? section.content : nil
   end
 end
