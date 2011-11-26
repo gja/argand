@@ -1,10 +1,10 @@
 class Page < ActiveRecord::Base
   validates_presence_of :template
   validates :name, presence: true, uniqueness: true, format: /^[0-9a-zA-Z\-_]*$/
-  has_many :sections
+  has_many :sections, :autosave => true
 
   def section_by_name(name)
-    sections.find_by_name(name) || sections.build(name: name)
+    sections.detect { |section| section.name == name } || sections.build(name: name)
   end
 
   def update_sections(section_data)
