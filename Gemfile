@@ -9,6 +9,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'rspec-core'
+  gem 'factory_girl_rails'
 end
 
 # Gems used only for assets and not required
