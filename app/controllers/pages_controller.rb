@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def show
     @page = Page.find_by_name(params[:page_name])
-    render "#{Rails.root}/templates/#{@page.template}"
+    render @page.template
   end
 
   def update
