@@ -5,8 +5,10 @@ gem 'rails', '3.1.0'
 gem 'sqlite3'
 gem 'mercury-rails'
 
-group :development do
+group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'rspec-core'
 end
 
 # Gems used only for assets and not required
