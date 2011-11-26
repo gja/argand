@@ -11,5 +11,31 @@ require 'spec_helper'
 #   end
 # end
 describe PagesHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    page = Factory(:page)
+    section = Factory(:section, :name => "foo", :content => "bar", :page => page)
+    helper.instance_variable_set("@page", page)
+  end
+
+  let(:params) { { :data => {:type => "editable"}, :id => "foo", :class => "mercury-region" } }
+
+  it "calls a div tag when asked for an editable div" do
+    helper.should_receive(:content_tag).with(:div, "bar", params)
+    helper.editable(:div, "foo")
+  end
+
+  it "returns nil even if no content is found" do
+    helper.should_receive(:content_tag).with(:div, nil, params.merge(:id => "bar"))
+    helper.editable(:div, "bar")
+  end
+
+  it "merges classes" do
+    helper.should_receive(:content_tag).with(:div, "bar", params.merge(:class => "foo mercury-region"))
+    helper.editable(:div, "foo", :class => "foo")
+  end
+
+  it "merges data-type" do
+    helper.should_receive(:content_tag).with(:div, "bar", params.merge(:data => {:foo => "bar", :type => "editable"} ))
+    helper.editable(:div, "foo", :data => {:foo => "bar"})
+  end
 end
