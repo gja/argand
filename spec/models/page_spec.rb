@@ -10,5 +10,6 @@ describe Page do
     it { should allow_value("na_me").for(:name) }
     it { should allow_value("na-me").for(:name) }
     it { should_not allow_value("na me").for(:name) }
+    it { should have_many :sections }
   end
 end
