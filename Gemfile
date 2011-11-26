@@ -4,6 +4,7 @@ gem 'rails', '3.1.0'
 
 gem 'sqlite3'
 gem 'mercury-rails'
+gem 'activeadmin'
 
 group :development, :test do
   gem 'rspec-rails'
