@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :page do
-    template "template"
+    template "sample_template"
     sequence(:name) { |n| "page#{n}" }
   end
 
